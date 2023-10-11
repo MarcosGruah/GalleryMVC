@@ -18,5 +18,19 @@ namespace GalleryMVC.Web.Controllers
             List<Game> objGameList = _db.Games.OrderBy(game => game.Name).ToList();
             return View(objGameList);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Game obj)
+        {
+            obj.GameId = Guid.NewGuid();
+            _db.Games.Add(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
