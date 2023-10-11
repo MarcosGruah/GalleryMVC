@@ -27,10 +27,19 @@ namespace GalleryMVC.Web.Controllers
         [HttpPost]
         public IActionResult Create(Game obj)
         {
-            obj.GameId = Guid.NewGuid();
-            _db.Games.Add(obj);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+            if (obj.Name != null && obj.Name.ToLower() == "test")
+            {
+                ModelState.AddModelError("", "Test is not a valid name.");
+            }
+            if (ModelState.IsValid)
+            {
+                obj.GameId = Guid.NewGuid();
+                _db.Games.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View();
         }
     }
 }

@@ -6,9 +6,11 @@
             <h2 class="text-primary">Add Game</h2>
             <hr />
         </div>
+        <div asp-validation-summary="All" class="text-danger my-2"></div>
         <div class="mb-3 row p-1">
             <label asp-for="Name" class="pb-2"></label>
-            <input asp-for="Name" class="form-control" placeholder="Type the game name" />
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger my-2"></span>
         </div>
         <div class="row justify-content-between">
             <div class="col-6 col-md-3 px-1">
