@@ -1,6 +1,7 @@
 ﻿using GalleryMVC.Web.Data;
 using GalleryMVC.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace GalleryMVC.Web.Controllers
 {
@@ -35,6 +36,37 @@ namespace GalleryMVC.Web.Controllers
             {
                 obj.GameId = Guid.NewGuid();
                 _db.Games.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
+        public IActionResult Edit(string? id)
+        {
+            if (id.IsNullOrEmpty() || !Guid.TryParse(id, out Guid guid))
+            {
+                Console.WriteLine($"\"{id}\" is not a valid ID.");
+                return NotFound();
+            }
+
+            Game? gameFromDb = _db.Games.Find(guid);
+
+            if (gameFromDb == null)
+            {
+                Console.WriteLine($"\"{id}\" is a valid Guid, but was not found in the DB.");
+                return NotFound();
+            }
+            return View(gameFromDb);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Game obj)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Games.Update(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
