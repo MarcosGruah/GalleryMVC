@@ -73,5 +73,45 @@ namespace GalleryMVC.Web.Controllers
 
             return View();
         }
+
+        public IActionResult Delete(string? id)
+        {
+            if (id.IsNullOrEmpty() || !Guid.TryParse(id, out Guid guid))
+            {
+                Console.WriteLine($"\"{id}\" is not a valid ID.");
+                return NotFound();
+            }
+
+            Game? gameFromDb = _db.Games.Find(guid);
+
+            if (gameFromDb == null)
+            {
+                Console.WriteLine($"\"{id}\" is a valid Guid, but was not found in the DB.");
+                return NotFound();
+            }
+            return View(gameFromDb);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeletePOST(string? id)
+        {
+            if (id.IsNullOrEmpty() || !Guid.TryParse(id, out Guid guid))
+            {
+                Console.WriteLine($"\"{id}\" is not a valid ID.");
+                return NotFound();
+            }
+            Game? obj = _db.Games.Find(guid);
+
+            if (obj == null)
+            {
+                Console.WriteLine($"\"{id}\" is a valid Guid, but was not found in the DB.");
+                return NotFound();
+            }
+
+            _db.Games.Remove(obj);
+            Console.WriteLine($"ID: {obj.GameId}\nName: {obj.Name}\nHas been removed from the Database.");
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
