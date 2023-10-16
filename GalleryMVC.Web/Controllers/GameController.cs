@@ -37,6 +37,7 @@ namespace GalleryMVC.Web.Controllers
                 obj.GameId = Guid.NewGuid();
                 _db.Games.Add(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Game successfully created.";
                 return RedirectToAction("Index");
             }
 
@@ -68,6 +69,7 @@ namespace GalleryMVC.Web.Controllers
             {
                 _db.Games.Update(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Game successfully edited.";
                 return RedirectToAction("Index");
             }
 
@@ -111,6 +113,7 @@ namespace GalleryMVC.Web.Controllers
             _db.Games.Remove(obj);
             Console.WriteLine($"ID: {obj.GameId}\nName: {obj.Name}\nHas been removed from the Database.");
             _db.SaveChanges();
+            TempData["success"] = "Game successfully deleted.";
             return RedirectToAction("Index");
         }
     }
