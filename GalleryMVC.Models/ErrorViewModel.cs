@@ -1,4 +1,4 @@
-namespace GalleryMVC.Web.Models
+namespace GalleryMVC.Models
 {
     public class ErrorViewModel
     {

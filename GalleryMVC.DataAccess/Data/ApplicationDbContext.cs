@@ -1,7 +1,7 @@
-﻿using GalleryMVC.Web.Models;
+﻿using GalleryMVC.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace GalleryMVC.Web.Data
+namespace GalleryMVC.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {

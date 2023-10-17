@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace GalleryMVC.Web.Migrations
+namespace GalleryMVC.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class AddGameTabletoDb : Migration

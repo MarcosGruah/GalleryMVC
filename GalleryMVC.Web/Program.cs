@@ -1,4 +1,4 @@
-using GalleryMVC.Web.Data;
+using GalleryMVC.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

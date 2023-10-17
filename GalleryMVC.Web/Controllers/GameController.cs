@@ -1,5 +1,5 @@
-﻿using GalleryMVC.Web.Data;
-using GalleryMVC.Web.Models;
+﻿using GalleryMVC.DataAccess.Data;
+using GalleryMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
