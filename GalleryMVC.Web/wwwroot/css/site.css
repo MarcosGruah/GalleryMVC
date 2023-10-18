@@ -20,3 +20,17 @@ html {
 body {
     margin-bottom: 60px;
 }
+
+/* Define a CSS class to hide number input arrows */
+.no-number-arrows::-webkit-inner-spin-button,
+.no-number-arrows::-webkit-outer-spin-button,
+.no-number-arrows::-webkit-inner-spin-button,
+.no-number-arrows::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.no-number-arrows {
+    -moz-appearance: textfield;
+}
