@@ -1,4 +1,4 @@
-﻿using GalleryMVC.DataAccess.Data;
+﻿using GalleryMVC.DataAccess.Repository;
 using GalleryMVC.DataAccess.Repository.IRepository;
 using GalleryMVC.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -8,16 +8,16 @@ namespace GalleryMVC.Web.Controllers
 {
     public class GameController : Controller
     {
-        private readonly IGameRepository _gameRepository;
+        private readonly IUnityOfWork _unityOfWork;
 
-        public GameController(IGameRepository db)
+        public GameController(IUnityOfWork unityOfWork)
         {
-            _gameRepository = db;
+            _unityOfWork = unityOfWork;
         }
 
         public IActionResult Index()
         {
-            List<Game> objGameList = _gameRepository.GetAll().OrderBy(game => game.Name).ToList();
+            List<Game> objGameList = _unityOfWork.Game.GetAll().OrderBy(game => game.Name).ToList();
             return View(objGameList);
         }
 
@@ -36,8 +36,8 @@ namespace GalleryMVC.Web.Controllers
             if (ModelState.IsValid)
             {
                 obj.GameId = Guid.NewGuid();
-                _gameRepository.Add(obj);
-                _gameRepository.Save();
+                _unityOfWork.Game.Add(obj);
+                _unityOfWork.Save();
                 TempData["success"] = "Game successfully created.";
                 return RedirectToAction("Index");
             }
@@ -53,7 +53,7 @@ namespace GalleryMVC.Web.Controllers
                 return NotFound();
             }
 
-            Game? gameFromDb = _gameRepository.Get(obj => obj.GameId == guid);
+            Game? gameFromDb = _unityOfWork.Game.Get(obj => obj.GameId == guid);
 
             if (gameFromDb == null)
             {
@@ -68,8 +68,8 @@ namespace GalleryMVC.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _gameRepository.Update(obj);
-                _gameRepository.Save();
+                _unityOfWork.Game.Update(obj);
+                _unityOfWork.Save();
                 TempData["success"] = "Game successfully edited.";
                 return RedirectToAction("Index");
             }
@@ -85,7 +85,7 @@ namespace GalleryMVC.Web.Controllers
                 return NotFound();
             }
 
-            Game? gameFromDb = _gameRepository.Get(obj => obj.GameId == guid);
+            Game? gameFromDb = _unityOfWork.Game.Get(obj => obj.GameId == guid);
 
             if (gameFromDb == null)
             {
@@ -103,7 +103,7 @@ namespace GalleryMVC.Web.Controllers
                 Console.WriteLine($"\"{id}\" is not a valid ID.");
                 return NotFound();
             }
-            Game? obj = _gameRepository.Get(obj => obj.GameId == guid);
+            Game? obj = _unityOfWork.Game.Get(obj => obj.GameId == guid);
 
             if (obj == null)
             {
@@ -111,9 +111,9 @@ namespace GalleryMVC.Web.Controllers
                 return NotFound();
             }
 
-            _gameRepository.Remove(obj);
+            _unityOfWork.Game.Remove(obj);
             Console.WriteLine($"ID: {obj.GameId}\nName: {obj.Name}\nHas been removed from the Database.");
-            _gameRepository.Save();
+            _unityOfWork.Save();
             TempData["success"] = "Game successfully deleted.";
             return RedirectToAction("Index");
         }
