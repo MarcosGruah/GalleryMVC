@@ -1,11 +1,11 @@
-﻿using GalleryMVC.DataAccess.Repository;
-using GalleryMVC.DataAccess.Repository.IRepository;
+﻿using GalleryMVC.DataAccess.Repository.IRepository;
 using GalleryMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
-namespace GalleryMVC.Web.Controllers
+namespace GalleryMVC.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class GameController : Controller
     {
         private readonly IUnityOfWork _unityOfWork;

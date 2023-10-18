@@ -2,8 +2,9 @@ using GalleryMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace GalleryMVC.Web.Controllers
+namespace GalleryMVC.Web.Areas.User.Controllers
 {
+    [Area("User")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
