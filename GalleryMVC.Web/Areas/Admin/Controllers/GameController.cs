@@ -17,7 +17,7 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            List<Game> objGameList = _unityOfWork.Game.GetAll().OrderBy(game => game.Name).ToList();
+            List<Game> objGameList = _unityOfWork.Game.GetAll().OrderBy(game => game.Title).ToList();
             return View(objGameList);
         }
 
@@ -29,13 +29,13 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Create(Game obj)
         {
-            if (obj.Name != null && obj.Name.ToLower() == "test")
+            if (obj.Title != null && obj.Title.ToLower() == "test")
             {
                 ModelState.AddModelError("", "Test is not a valid name.");
             }
             if (ModelState.IsValid)
             {
-                obj.GameId = Guid.NewGuid();
+                obj.Id = Guid.NewGuid();
                 _unityOfWork.Game.Add(obj);
                 _unityOfWork.Save();
                 TempData["success"] = "Game successfully created.";
@@ -53,7 +53,7 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            Game? gameFromDb = _unityOfWork.Game.Get(obj => obj.GameId == guid);
+            Game? gameFromDb = _unityOfWork.Game.Get(obj => obj.Id == guid);
 
             if (gameFromDb == null)
             {
@@ -85,7 +85,7 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            Game? gameFromDb = _unityOfWork.Game.Get(obj => obj.GameId == guid);
+            Game? gameFromDb = _unityOfWork.Game.Get(obj => obj.Id == guid);
 
             if (gameFromDb == null)
             {
@@ -103,7 +103,7 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
                 Console.WriteLine($"\"{id}\" is not a valid ID.");
                 return NotFound();
             }
-            Game? obj = _unityOfWork.Game.Get(obj => obj.GameId == guid);
+            Game? obj = _unityOfWork.Game.Get(obj => obj.Id == guid);
 
             if (obj == null)
             {
@@ -112,7 +112,7 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
             }
 
             _unityOfWork.Game.Remove(obj);
-            Console.WriteLine($"ID: {obj.GameId}\nName: {obj.Name}\nHas been removed from the Database.");
+            Console.WriteLine($"ID: {obj.Id}\nName: {obj.Title}\nHas been removed from the Database.");
             _unityOfWork.Save();
             TempData["success"] = "Game successfully deleted.";
             return RedirectToAction("Index");
