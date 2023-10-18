@@ -25,5 +25,13 @@ namespace GalleryMVC.Models
         [DisplayName("Price")]
         [Range(0, 1000, ErrorMessage = "Price must be between $0 and $1000.")]
         public required decimal Price { get; set; }
+
+        [Required]
+        [DisplayName("Created Date")]
+        public required DateTime CreatedDate { get; set; }
+
+        [Required]
+        [DisplayName("Last Edited Date")]
+        public required DateTime LastEditedDate { get; set; }
     }
 }
