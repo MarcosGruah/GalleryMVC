@@ -4,6 +4,7 @@ using GalleryMVC.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GalleryMVC.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231020151819_changedDbSeedingStructure")]
+    partial class changedDbSeedingStructure
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,143 +66,143 @@ namespace GalleryMVC.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("0b6a2dd3-d667-4045-9ba7-78a7a5bcf06e"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(284),
+                            Id = new Guid("3a86f77a-9bbf-401f-9ae9-d4b869bc1825"),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2566),
                             Developer = "CD PROJEKT RED",
                             GenreId = new Guid("c1f30a98-144f-4ef1-9b41-07d7a946a92c"),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(287),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2571),
                             Price = 59.99m,
                             Publisher = "CD PROJEKT RED",
                             Title = "Cyberpunk 2077"
                         },
                         new
                         {
-                            Id = new Guid("b7805a50-ddbb-45f6-a09a-d58a323879dc"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(293),
+                            Id = new Guid("94b5c79b-c58b-4b04-910b-9b80b6c7751e"),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2576),
                             Developer = "Bethesda Game Studios",
                             GenreId = new Guid("7c3148a0-15f4-4e97-9d2f-1c035ab1e97a"),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(293),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2577),
                             Price = 69.99m,
                             Publisher = "Bethesda Softworks",
                             Title = "Starfield"
                         },
                         new
                         {
-                            Id = new Guid("2db1159d-f307-43ec-a486-6afc1f8e3e8d"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(297),
+                            Id = new Guid("4c2b6e55-51eb-41f3-9414-622a5c69c28a"),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2581),
                             Developer = "Valve",
-                            GenreId = new Guid("4bb407a1-128f-40e2-8363-5ff17312c87d"),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(298),
+                            GenreId = new Guid("33a3db15-80a6-4e8a-b6cc-2500fc6bfa75"),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2581),
                             Price = 0m,
                             Publisher = "Valve",
                             Title = "Dota 2"
                         },
                         new
                         {
-                            Id = new Guid("2703cfa9-3a20-454e-a5f3-fea1392aae3a"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(300),
+                            Id = new Guid("ded931a1-34fb-4ae6-812b-c8f04bbcaf96"),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2584),
                             Developer = "Larian Studios",
                             GenreId = new Guid("c1f30a98-144f-4ef1-9b41-07d7a946a92c"),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(301),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2585),
                             Price = 59.99m,
                             Publisher = "Larian Studios",
                             Title = "Baldur's Gate 3"
                         },
                         new
                         {
-                            Id = new Guid("68cb7a60-5c15-4e90-9b76-c6d57bac50e4"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(304),
+                            Id = new Guid("3e2704c4-ae5a-4779-b889-ae939775a474"),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2588),
                             Developer = "Klei Entertainment",
                             GenreId = new Guid("fae50298-4855-41de-a3ab-79eb15904f5d"),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(305),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2588),
                             Price = 9.99m,
                             Publisher = "Klei Entertainment",
                             Title = "Don't Starve"
                         },
                         new
                         {
-                            Id = new Guid("a5f64243-b802-4621-b2e6-7a1730ba22f6"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(308),
+                            Id = new Guid("27eb01e7-f523-499d-940d-9940095ffe39"),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2592),
                             Developer = "Wube Software LTD.",
                             GenreId = new Guid("dd7d7e7f-ccd4-4a7f-86a1-2722e0e0a340"),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(308),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2592),
                             Price = 35.00m,
                             Publisher = "Wube Software LTD.",
                             Title = "Factorio"
                         },
                         new
                         {
-                            Id = new Guid("552673b8-3767-45e0-8245-5e5648a0f87a"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(312),
+                            Id = new Guid("1a44e54b-cc42-4672-be48-d40e62928b03"),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2596),
                             Developer = "Klei Entertainment",
                             GenreId = new Guid("fae50298-4855-41de-a3ab-79eb15904f5d"),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(312),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2596),
                             Price = 24.99m,
                             Publisher = "Klei Entertainment",
                             Title = "Oxygen Not Included"
                         },
                         new
                         {
-                            Id = new Guid("38d97e98-b7e9-4938-af8b-767e9bbe3969"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(315),
+                            Id = new Guid("995dfc0f-fa56-4b20-bc9d-9d4fd8115c44"),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2599),
                             Developer = "CD PROJEKT RED",
                             GenreId = new Guid("c1f30a98-144f-4ef1-9b41-07d7a946a92c"),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(316),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2599),
                             Price = 39.99m,
                             Publisher = "CD PROJEKT RED",
                             Title = "The Witcher 3: Wild Hunt"
                         },
                         new
                         {
-                            Id = new Guid("b6489611-f8ac-44be-a83a-1e87d7be99a0"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(322),
+                            Id = new Guid("758ca8e4-36dc-46b2-937a-88eebc03299c"),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2605),
                             Developer = "Bethesda Game Studios",
                             GenreId = new Guid("7c3148a0-15f4-4e97-9d2f-1c035ab1e97a"),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(322),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2606),
                             Price = 19.99m,
                             Publisher = "Bethesda Softworks",
                             Title = "The Elder Scrolls V: Skyrim"
                         },
                         new
                         {
-                            Id = new Guid("2d99f6cf-7855-4f0e-b7e3-93ebd700b78c"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(325),
+                            Id = new Guid("f39978fc-fdf7-4614-ac08-aa2a7cecca5d"),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2609),
                             Developer = "Valve",
                             GenreId = new Guid("33a3db15-80a6-4e8a-b6cc-2500fc6bfa75"),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(326),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2609),
                             Price = 0m,
                             Publisher = "Valve",
                             Title = "Counter-Strike 2"
                         },
                         new
                         {
-                            Id = new Guid("06f4e51b-3ec4-4e62-84de-dcc20b1fe05c"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(329),
+                            Id = new Guid("91d720ff-bdb6-46e3-aa5b-9be64d6b4b3c"),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2612),
                             Developer = "Larian Studios",
                             GenreId = new Guid("c1f30a98-144f-4ef1-9b41-07d7a946a92c"),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(329),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2612),
                             Price = 44.99m,
                             Publisher = "Larian Studios",
                             Title = "Divinity: Original Sin 2"
                         },
                         new
                         {
-                            Id = new Guid("e4e7c258-031d-448a-8acf-86232c747e3d"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(332),
+                            Id = new Guid("1abacd23-8c2e-4b13-92a0-fa7e7589c793"),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2615),
                             Developer = "ConcernedApe",
                             GenreId = new Guid("fae50298-4855-41de-a3ab-79eb15904f5d"),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(332),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2615),
                             Price = 14.99m,
                             Publisher = "ConcernedApe",
                             Title = "Stardew Valley"
                         },
                         new
                         {
-                            Id = new Guid("ea787761-8fc6-4a8d-9401-4f53e2b20036"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(336),
+                            Id = new Guid("a7264679-cb6c-4c70-87f5-5f6a67de71da"),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2618),
                             Developer = "FromSoftware",
-                            GenreId = new Guid("0eb1e1f2-b5de-4d69-8237-4d28ab4c90ff"),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(336),
+                            GenreId = new Guid("33a3db15-80a6-4e8a-b6cc-2500fc6bfa75"),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2618),
                             Price = 59.99m,
                             Publisher = "Activision",
                             Title = "Sekiro: Shadows Die Twice"
@@ -231,57 +234,57 @@ namespace GalleryMVC.DataAccess.Migrations
                         new
                         {
                             Id = new Guid("c1f30a98-144f-4ef1-9b41-07d7a946a92c"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(493),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(493),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2773),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2774),
                             Name = "RPG"
                         },
                         new
                         {
                             Id = new Guid("5719e94d-9c86-48b1-85c6-5cdd84e2e1db"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(496),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(496),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2777),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2777),
                             Name = "Action"
                         },
                         new
                         {
                             Id = new Guid("7c3148a0-15f4-4e97-9d2f-1c035ab1e97a"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(498),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(499),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2779),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2780),
                             Name = "Strategy"
                         },
                         new
                         {
                             Id = new Guid("4bb407a1-128f-40e2-8363-5ff17312c87d"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(500),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(500),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2781),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2782),
                             Name = "Free to Play"
                         },
                         new
                         {
                             Id = new Guid("0eb1e1f2-b5de-4d69-8237-4d28ab4c90ff"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(502),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(502),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2784),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2784),
                             Name = "Adventure"
                         },
                         new
                         {
                             Id = new Guid("fae50298-4855-41de-a3ab-79eb15904f5d"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(504),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(505),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2786),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2786),
                             Name = "Indie"
                         },
                         new
                         {
                             Id = new Guid("dd7d7e7f-ccd4-4a7f-86a1-2722e0e0a340"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(506),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(506),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2788),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2788),
                             Name = "Simulation"
                         },
                         new
                         {
                             Id = new Guid("33a3db15-80a6-4e8a-b6cc-2500fc6bfa75"),
-                            CreatedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(508),
-                            LastEditedDate = new DateTime(2023, 10, 20, 15, 21, 54, 779, DateTimeKind.Utc).AddTicks(508),
+                            CreatedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2789),
+                            LastEditedDate = new DateTime(2023, 10, 20, 15, 18, 18, 438, DateTimeKind.Utc).AddTicks(2790),
                             Name = "Shooter"
                         });
                 });
