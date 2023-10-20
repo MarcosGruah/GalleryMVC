@@ -1,0 +1,42 @@
+﻿@model List<Genre>
+
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">Genre List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Genre" asp-area="Admin" asp-action="Create" class="btn btn-sm btn-outline-success"><i class="bi bi-plus-circle"></i> Add New Genre</a>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped table-sm">
+        <thead>
+            <tr class="text-center">
+                @*<th>Game Id</th>*@
+                <th class="col-8 bg-primary text-light">Game Genre</th>
+                <th class="col-4 bg-primary text-light">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    @*@<td>@obj.GameId</td>*@
+                    <td class="align-middle ">@obj.Name</td>
+                    <td class="text-center">
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Genre" asp-area="Admin" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-outline-warning btn btn-sm mx-2">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            <a asp-controller="Genre" asp-area="Admin" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-outline-danger btn btn-sm mx-2">
+                                <i class="bi bi-trash-fill"></i> Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

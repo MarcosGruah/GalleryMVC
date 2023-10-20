@@ -3,6 +3,7 @@
     public interface IUnityOfWork
     {
         IGameRepository Game { get; }
+        IGenreRepository Genre { get; }
 
         void Save();
     }

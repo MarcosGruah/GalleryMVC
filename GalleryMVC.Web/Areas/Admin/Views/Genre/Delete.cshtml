@@ -1,0 +1,25 @@
+﻿@model Genre
+
+<form method="post">
+    <input asp-for="Id" hidden />
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Delete Game</h2>
+            <hr />
+        </div>
+        <div asp-validation-summary="All" class="text-danger my-2"></div>
+        <div class="from-group mb-3 row p-1">
+            <label asp-for="Name" class="pb-2"></label>
+            <input asp-for="Name" disabled class="form-control" />
+        </div>       
+        <div class="row justify-content-between">
+            <div class="col-6 col-md-3 px-1">
+                <a asp-controller="Genre" asp-area="Admin" asp-action="Index" class="btn btn-outline-secondary form-control">Return</a>
+            </div>
+            <div class="col-6 col-md-3 px-1">
+                <button type="submit" class="btn btn-danger form-control">Delete</button>
+            </div>
+
+        </div>
+    </div>
+</form>
