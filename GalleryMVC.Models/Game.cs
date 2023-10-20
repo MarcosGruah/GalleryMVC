@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GalleryMVC.Models
 {
@@ -25,6 +26,12 @@ namespace GalleryMVC.Models
         [DisplayName("Price")]
         [Range(0, 1000, ErrorMessage = "Price must be between $0 and $1000.")]
         public required decimal Price { get; set; }
+
+        [DisplayName("Genre")]
+        public required Guid GenreId { get; set; }
+
+        [ForeignKey("GenreId")]
+        public Genre? Genre { get; set; }
 
         [Required]
         [DisplayName("Created Date")]
