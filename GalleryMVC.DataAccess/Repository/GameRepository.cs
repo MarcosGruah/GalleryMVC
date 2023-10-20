@@ -13,9 +13,26 @@ namespace GalleryMVC.DataAccess.Repository
             _db = db;
         }
 
+        public override void Add(Game game)
+        {
+            game.Id = Guid.NewGuid();
+            game.CreatedDate = DateTime.UtcNow;
+            game.LastEditedDate = DateTime.UtcNow;
+            base.Add(game);
+        }
+
         public void Update(Game obj)
         {
-            _db.Games.Update(obj);
+            var game = _db.Games.FirstOrDefault(x => x.Id == obj.Id);
+            if (game != null)
+            {
+                game.Title = obj.Title;
+                game.Developer = obj.Developer;
+                game.Publisher = obj.Publisher;
+                game.Price = obj.Price;
+                game.LastEditedDate = DateTime.UtcNow;
+                _db.Games.Update(game);
+            }
         }
     }
 }

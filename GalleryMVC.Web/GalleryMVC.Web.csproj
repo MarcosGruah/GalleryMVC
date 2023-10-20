@@ -20,8 +20,4 @@
     <ProjectReference Include="..\GalleryMVC.DataAccess\GalleryMVC.DataAccess.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>

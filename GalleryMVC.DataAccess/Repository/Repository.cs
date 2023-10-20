@@ -16,7 +16,7 @@ namespace GalleryMVC.DataAccess.Repository
             dbSet = _db.Set<T>();
         }
 
-        public void Add(T entity)
+        public virtual void Add(T entity)
         {
             dbSet.Add(entity);
         }
