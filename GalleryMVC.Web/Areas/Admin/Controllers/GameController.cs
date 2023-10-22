@@ -4,6 +4,7 @@ using GalleryMVC.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.IdentityModel.Tokens;
+using System;
 
 namespace GalleryMVC.Web.Areas.Admin.Controllers
 {
@@ -23,7 +24,7 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
             return View(objGameList);
         }
 
-        public IActionResult Create()
+        public IActionResult Upsert(string? id)
         {
             GameVM gameVM = new()
             {
@@ -37,15 +38,36 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
                 Game = new Game()
             };
 
-            return View(gameVM);
+            if (string.IsNullOrEmpty(id))
+            {
+                //Create
+                return View(gameVM);
+            }
+            else
+            {
+                //Update
+
+                Guid.TryParse(id, out Guid validId);
+
+                gameVM.Game = _unitOfWork.Game.Get(obj => obj.Id == validId);
+
+                return View(gameVM);
+            }
         }
 
         [HttpPost]
-        public IActionResult Create(GameVM gameVM)
+        public IActionResult Upsert(GameVM gameVM)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Game.Add(gameVM.Game);
+                if (gameVM.Game.Id == Guid.Empty)
+                {
+                    _unitOfWork.Game.Add(gameVM.Game);
+                }
+                else
+                {
+                    _unitOfWork.Game.Update(gameVM.Game);
+                }
                 _unitOfWork.Save();
                 TempData["success"] = "Game successfully created.";
                 return RedirectToAction("Index");
@@ -61,37 +83,6 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
                 });
                 return View(gameVM);
             }
-        }
-
-        public IActionResult Edit(string? id)
-        {
-            if (id.IsNullOrEmpty() || !Guid.TryParse(id, out Guid guid))
-            {
-                return NotFound();
-            }
-
-            Game? gameFromDb = _unitOfWork.Game.Get(obj => obj.Id == guid);
-
-            if (gameFromDb == null)
-            {
-                return NotFound();
-            }
-
-            return View(gameFromDb);
-        }
-
-        [HttpPost]
-        public IActionResult Edit(Game obj)
-        {
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Game.Update(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "Game successfully edited.";
-                return RedirectToAction("Index");
-            }
-
-            return View();
         }
 
         public IActionResult Delete(string? id)

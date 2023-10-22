@@ -3,8 +3,9 @@
 <form method="post">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Add Game</h2>
+            <h2 class="text-primary">@(Model.Game.Id == Guid.Empty ?"Add":"Update") Game</h2>
             <hr />
+            <input asp-for="Game.Id" hidden/>
         </div>
         <div asp-validation-summary="All" class="text-danger my-2"></div>
         <div class="from-group mb-3 row p-1">
@@ -31,7 +32,7 @@
         </div>
         <div class="from-group mb-3 row p-1">
             <label asp-for="Game.Price" class="pb-2"></label>
-            <input type="number" step="0.01" asp-for="Game.Price" class="form-control no-number-arrows" value="@((Model.Game.Price == 0) ? "" : Model.Game.Price)" />
+            <input type="number" step="0.01" asp-for="Game.Price" class="form-control no-number-arrows" value="@((Model.Game.Price == 0) ? "" : Model.Game.Price.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture))" />
             <span asp-validation-for="Game.Price" class="text-danger my-2"></span>
         </div>
         <div class="row justify-content-between">
@@ -39,7 +40,14 @@
                 <a asp-controller="Game" asp-area="Admin" asp-action="Index" class="btn btn-outline-secondary form-control">Return</a>
             </div>
             <div class="col-6 col-md-3 px-1">
-                <button type="submit" class="btn btn-success form-control">Submit</button>
+                @if(Model.Game.Id == Guid.Empty)
+                {
+                    <button type="submit" class="btn btn-success form-control">Submit</button>
+
+                } else
+                {
+                    <button type="submit" class="btn btn-warning form-control">Update</button>
+                }
             </div>
 
         </div>
