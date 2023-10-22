@@ -1,6 +1,6 @@
 ﻿namespace GalleryMVC.DataAccess.Repository.IRepository
 {
-    public interface IUnityOfWork
+    public interface IUnitOfWork
     {
         IGameRepository Game { get; }
         IGenreRepository Genre { get; }

@@ -8,16 +8,16 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
     [Area("Admin")]
     public class GenreController : Controller
     {
-        private readonly IUnityOfWork _unityOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public GenreController(IUnityOfWork unityOfWork)
+        public GenreController(IUnitOfWork unitOfWork)
         {
-            _unityOfWork = unityOfWork;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            List<Genre> objGenreList = _unityOfWork.Genre.GetAll().OrderBy(genre => genre.Name).ToList();
+            List<Genre> objGenreList = _unitOfWork.Genre.GetAll().OrderBy(genre => genre.Name).ToList();
             return View(objGenreList);
         }
 
@@ -31,8 +31,8 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _unityOfWork.Genre.Add(obj);
-                _unityOfWork.Save();
+                _unitOfWork.Genre.Add(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Genre successfully created.";
                 return RedirectToAction("Index");
             }
@@ -46,7 +46,7 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            Genre? genreFromDb = _unityOfWork.Genre.Get(obj => obj.Id == guid);
+            Genre? genreFromDb = _unitOfWork.Genre.Get(obj => obj.Id == guid);
 
             if (genreFromDb == null)
             {
@@ -61,8 +61,8 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _unityOfWork.Genre.Update(obj);
-                _unityOfWork.Save();
+                _unitOfWork.Genre.Update(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Genre successfully edited.";
                 return RedirectToAction("Index");
             }
@@ -77,7 +77,7 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            Genre? genreFromDb = _unityOfWork.Genre.Get(obj => obj.Id == guid);
+            Genre? genreFromDb = _unitOfWork.Genre.Get(obj => obj.Id == guid);
 
             if (genreFromDb == null)
             {
@@ -93,15 +93,15 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            Genre? obj = _unityOfWork.Genre.Get(obj => obj.Id == guid);
+            Genre? obj = _unitOfWork.Genre.Get(obj => obj.Id == guid);
 
             if (obj == null)
             {
                 return NotFound();
             }
 
-            _unityOfWork.Genre.Remove(obj);
-            _unityOfWork.Save();
+            _unitOfWork.Genre.Remove(obj);
+            _unitOfWork.Save();
             TempData["success"] = "Genre successfully deleted.";
             return RedirectToAction("Index");
         }

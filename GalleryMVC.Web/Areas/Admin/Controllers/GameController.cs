@@ -10,16 +10,16 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
     [Area("Admin")]
     public class GameController : Controller
     {
-        private readonly IUnityOfWork _unityOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public GameController(IUnityOfWork unityOfWork)
+        public GameController(IUnitOfWork unitOfWork)
         {
-            _unityOfWork = unityOfWork;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            List<Game> objGameList = _unityOfWork.Game.GetAll().OrderBy(game => game.Title).ToList();
+            List<Game> objGameList = _unitOfWork.Game.GetAll().OrderBy(game => game.Title).ToList();
             return View(objGameList);
         }
 
@@ -27,7 +27,7 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
         {
             GameVM gameVM = new()
             {
-                GenreList = _unityOfWork.Genre
+                GenreList = _unitOfWork.Genre
                 .GetAll().OrderBy(genre => genre.Name)
                 .Select(obj => new SelectListItem
                 {
@@ -45,14 +45,14 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _unityOfWork.Game.Add(gameVM.Game);
-                _unityOfWork.Save();
+                _unitOfWork.Game.Add(gameVM.Game);
+                _unitOfWork.Save();
                 TempData["success"] = "Game successfully created.";
                 return RedirectToAction("Index");
             }
             else
             {
-                gameVM.GenreList = _unityOfWork.Genre
+                gameVM.GenreList = _unitOfWork.Genre
                 .GetAll().OrderBy(genre => genre.Name)
                 .Select(obj => new SelectListItem
                 {
@@ -70,7 +70,7 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            Game? gameFromDb = _unityOfWork.Game.Get(obj => obj.Id == guid);
+            Game? gameFromDb = _unitOfWork.Game.Get(obj => obj.Id == guid);
 
             if (gameFromDb == null)
             {
@@ -85,8 +85,8 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _unityOfWork.Game.Update(obj);
-                _unityOfWork.Save();
+                _unitOfWork.Game.Update(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Game successfully edited.";
                 return RedirectToAction("Index");
             }
@@ -101,7 +101,7 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            Game? gameFromDb = _unityOfWork.Game.Get(obj => obj.Id == guid);
+            Game? gameFromDb = _unitOfWork.Game.Get(obj => obj.Id == guid);
 
             if (gameFromDb == null)
             {
@@ -117,15 +117,15 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            Game? obj = _unityOfWork.Game.Get(obj => obj.Id == guid);
+            Game? obj = _unitOfWork.Game.Get(obj => obj.Id == guid);
 
             if (obj == null)
             {
                 return NotFound();
             }
 
-            _unityOfWork.Game.Remove(obj);
-            _unityOfWork.Save();
+            _unitOfWork.Game.Remove(obj);
+            _unitOfWork.Save();
             TempData["success"] = "Game successfully deleted.";
             return RedirectToAction("Index");
         }

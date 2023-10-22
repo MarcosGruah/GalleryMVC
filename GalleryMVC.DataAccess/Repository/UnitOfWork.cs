@@ -3,13 +3,13 @@ using GalleryMVC.DataAccess.Repository.IRepository;
 
 namespace GalleryMVC.DataAccess.Repository
 {
-    public class UnityOfWork : IUnityOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private ApplicationDbContext _db;
         public IGameRepository Game { get; private set; }
         public IGenreRepository Genre { get; private set; }
 
-        public UnityOfWork(ApplicationDbContext db)
+        public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             Game = new GameRepository(_db);
