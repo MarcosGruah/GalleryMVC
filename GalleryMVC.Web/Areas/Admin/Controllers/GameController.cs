@@ -1,6 +1,8 @@
 ﻿using GalleryMVC.DataAccess.Repository.IRepository;
 using GalleryMVC.Models;
+using GalleryMVC.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.IdentityModel.Tokens;
 
 namespace GalleryMVC.Web.Areas.Admin.Controllers
@@ -23,20 +25,42 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            GameVM gameVM = new()
+            {
+                GenreList = _unityOfWork.Genre
+                .GetAll().OrderBy(genre => genre.Name)
+                .Select(obj => new SelectListItem
+                {
+                    Text = obj.Name,
+                    Value = obj.Id.ToString()
+                }),
+                Game = new Game()
+            };
+
+            return View(gameVM);
         }
 
         [HttpPost]
-        public IActionResult Create(Game obj)
+        public IActionResult Create(GameVM gameVM)
         {
             if (ModelState.IsValid)
             {
-                _unityOfWork.Game.Add(obj);
+                _unityOfWork.Game.Add(gameVM.Game);
                 _unityOfWork.Save();
                 TempData["success"] = "Game successfully created.";
                 return RedirectToAction("Index");
             }
-            return View();
+            else
+            {
+                gameVM.GenreList = _unityOfWork.Genre
+                .GetAll().OrderBy(genre => genre.Name)
+                .Select(obj => new SelectListItem
+                {
+                    Text = obj.Name,
+                    Value = obj.Id.ToString()
+                });
+                return View(gameVM);
+            }
         }
 
         public IActionResult Edit(string? id)

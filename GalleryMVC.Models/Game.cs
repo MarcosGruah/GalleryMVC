@@ -12,33 +12,33 @@ namespace GalleryMVC.Models
         [Required]
         [StringLength(30, MinimumLength = 3, ErrorMessage = "The Game Name must be between 3 and 30 characters.")]
         [DisplayName("Game Name")]
-        public required string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
 
         [Required]
         [DisplayName("Publisher")]
-        public required string Publisher { get; set; }
+        public string Publisher { get; set; } = string.Empty;
 
         [Required]
         [DisplayName("Developer")]
-        public required string Developer { get; set; }
+        public string Developer { get; set; } = string.Empty;
 
         [Required]
         [DisplayName("Price")]
         [Range(0, 1000, ErrorMessage = "Price must be between $0 and $1000.")]
-        public required decimal Price { get; set; }
+        public decimal Price { get; set; }
 
         [DisplayName("Genre")]
-        public required Guid GenreId { get; set; }
+        public Guid GenreId { get; set; }
 
         [ForeignKey("GenreId")]
         public Genre? Genre { get; set; }
 
         [Required]
         [DisplayName("Created Date")]
-        public required DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
 
         [Required]
         [DisplayName("Last Edited Date")]
-        public required DateTime LastEditedDate { get; set; }
+        public DateTime LastEditedDate { get; set; }
     }
 }

@@ -11,14 +11,14 @@ namespace GalleryMVC.Models
         [Required]
         [DisplayName("Genre")]
         [StringLength(20, MinimumLength = 2)]
-        public required string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         [Required]
         [DisplayName("Created Date")]
-        public required DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
 
         [Required]
         [DisplayName("Last Edited Date")]
-        public required DateTime LastEditedDate { get; set; }
+        public DateTime LastEditedDate { get; set; }
     }
 }

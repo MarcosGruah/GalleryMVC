@@ -6,7 +6,7 @@ namespace GalleryMVC.DataAccess.Repository.IRepository
     {
         IEnumerable<T> GetAll();
 
-        T Get(Expression<Func<T, bool>> filter);
+        T? Get(Expression<Func<T, bool>> filter);
 
         void Add(T entity);
 
