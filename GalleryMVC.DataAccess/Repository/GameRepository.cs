@@ -30,6 +30,7 @@ namespace GalleryMVC.DataAccess.Repository
                 game.Developer = obj.Developer;
                 game.Publisher = obj.Publisher;
                 game.Price = obj.Price;
+                game.GenreId = obj.GenreId;
                 game.LastEditedDate = DateTime.UtcNow;
                 _db.Games.Update(game);
             }

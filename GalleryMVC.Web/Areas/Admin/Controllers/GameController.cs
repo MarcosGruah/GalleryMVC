@@ -20,7 +20,7 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            List<Game> objGameList = _unitOfWork.Game.GetAll().OrderBy(game => game.Title).ToList();
+            List<Game> objGameList = _unitOfWork.Game.GetAll(includeProperties: "Genre").OrderBy(game => game.Title).ToList();
             return View(objGameList);
         }
 
@@ -49,7 +49,12 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
 
                 Guid.TryParse(id, out Guid validId);
 
-                gameVM.Game = _unitOfWork.Game.Get(obj => obj.Id == validId);
+                var gameFetch = _unitOfWork.Game.Get(obj => obj.Id == validId);
+
+                if (gameFetch != null)
+                {
+                    gameVM.Game = gameFetch;
+                }
 
                 return View(gameVM);
             }
