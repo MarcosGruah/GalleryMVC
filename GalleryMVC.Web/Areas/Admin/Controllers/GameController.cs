@@ -3,8 +3,6 @@ using GalleryMVC.Models;
 using GalleryMVC.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.IdentityModel.Tokens;
-using System;
 
 namespace GalleryMVC.Web.Areas.Admin.Controllers
 {
@@ -90,40 +88,32 @@ namespace GalleryMVC.Web.Areas.Admin.Controllers
             }
         }
 
-        public IActionResult Delete(string? id)
+        #region API CALLS
+
+        [HttpGet]
+        public IActionResult GetAll()
         {
-            if (id.IsNullOrEmpty() || !Guid.TryParse(id, out Guid guid))
-            {
-                return NotFound();
-            }
-
-            Game? gameFromDb = _unitOfWork.Game.Get(obj => obj.Id == guid);
-
-            if (gameFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(gameFromDb);
+            List<Game> objGameList = _unitOfWork.Game.GetAll(includeProperties: "Genre").OrderBy(game => game.Title).ToList();
+            return Json(new { data = objGameList });
         }
 
-        [HttpPost, ActionName("Delete")]
-        public IActionResult DeletePOST(string? id)
+        [HttpDelete]
+        public IActionResult Delete(Guid? id)
         {
-            if (id.IsNullOrEmpty() || !Guid.TryParse(id, out Guid guid))
-            {
-                return NotFound();
-            }
-            Game? obj = _unitOfWork.Game.Get(obj => obj.Id == guid);
+            var game = _unitOfWork.Game.Get(u => u.Id == id);
 
-            if (obj == null)
+            if (game == null)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Error while deleting" });
             }
 
-            _unitOfWork.Game.Remove(obj);
+            _unitOfWork.Game.Remove(game);
             _unitOfWork.Save();
-            TempData["success"] = "Game successfully deleted.";
-            return RedirectToAction("Index");
+
+            List<Game> objGameList = _unitOfWork.Game.GetAll(includeProperties: "Genre").OrderBy(game => game.Title).ToList();
+            return Json(new { success = true, message = "Delete successful" });
         }
+
+        #endregion API CALLS
     }
 }
